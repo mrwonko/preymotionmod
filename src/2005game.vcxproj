@@ -87,22 +87,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Game/DebugDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Game/DebugDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Game/ReleaseDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Game/ReleaseDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">Game/InlineDebugDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">Game/InlineDebugDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug with inlines|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">Game/InlineDebugMemoryDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">Game/InlineDebugMemoryDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with Inlines|Win32'">Game/DedicatedInlineDebugDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with Inlines|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with Inlines|Win32'">Game/DedicatedInlineDebugDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Dedicated Debug with Inlines|Win32'">false</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">Game/DedicatedReleaseDLL\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">../</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">Game/DedicatedReleaseDLL\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Dedicated Release|Win32'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug with inlines and memory log|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -155,7 +155,7 @@
     <Link>
       <AdditionalOptions>/FIXED:no %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;dbghelp.lib;./DebugDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./DebugDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\game\game.def</ModuleDefinitionFile>
@@ -208,7 +208,7 @@
     <Link>
       <AdditionalOptions>/MACHINE:I386 /fixed:no %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;./ReleaseDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./ReleaseDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>.\game\game.def</ModuleDefinitionFile>
@@ -263,7 +263,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;dbghelp.lib;./InlineDebugDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./InlineDebugDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -318,7 +318,7 @@
     <Link>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;dbghelp.lib;./InlineDebugMemoryDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./InlineDebugMemoryDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -372,7 +372,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;dbghelp.lib;./DedicatedInlineDebugDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./DedicatedInlineDebugDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>.\game\game.def</ModuleDefinitionFile>
@@ -425,7 +425,7 @@
     <Link>
       <AdditionalOptions>/MACHINE:I386 /fixed:no %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;./DedicatedReleaseDLL/idLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>./DedicatedReleaseDLL/gamex86.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\game\game.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
