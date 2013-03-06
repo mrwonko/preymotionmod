@@ -287,6 +287,10 @@ extern idCVar	si_spectators;
 extern idCVar	net_clientSelfSmoothing;
 extern idCVar	net_clientLagOMeter;
 
+// Mr. Wonko: stereo 3D
+extern idCVar	stereo_enable;
+extern idCVar	stereo_separation;
+
 extern const char *si_gameTypeArgs[];
 
 //extern const char *ui_skinArgs[];	// HUMANHEAD pdm: removed

@@ -717,22 +717,63 @@ void hhPlayerView::SetLetterBox(bool on) {
 // RenderPlayerView
 //------------------------------------------------------
 void hhPlayerView::RenderPlayerView( idUserInterface *hud ) {
-	const renderView_t *view = player->GetRenderView();
+	if( !stereo_enable.GetBool() ) // Mr. Wonko: Stereo rendering
+	{
+		const renderView_t *view = player->GetRenderView();
 
-	if ( g_skipViewEffects.GetBool() ) {
-		SingleView( hud, view );
-	} else {
-		if (gameLocal.time < mbFinishTime) {
-			MotionBlurVision(hud, view);
-		} else if ( ((hhPlayer *)player)->IsSpiritWalking() ) {
-			SpiritVision( hud, view );
+		if ( g_skipViewEffects.GetBool() ) {
+			SingleView( hud, view );
 		} else {
-			SingleView(hud, view);
-		}
-		ScreenFade();
+			if (gameLocal.time < mbFinishTime) {
+				MotionBlurVision(hud, view);
+			} else if ( ((hhPlayer *)player)->IsSpiritWalking() ) {
+				SpiritVision( hud, view );
+			} else {
+				SingleView(hud, view);
+			}
+			ScreenFade();
 
-		// HUMANHEAD pdm: letterbox
-		ApplyLetterBox(view);
+			// HUMANHEAD pdm: letterbox
+			ApplyLetterBox(view);
+		}
+	}
+	else
+	{
+		renderView_t view = *player->GetRenderView();
+		view.width /= 2;
+		view.fov_x /= 2;
+
+		typedef	void (hhPlayerView::* ViewFuncPtr) ( idUserInterface*, const renderView_t* );
+
+		ViewFuncPtr viewFunc = &hhPlayerView::SingleView;
+
+		if( !g_skipViewEffects.GetBool() && gameLocal.time < mbFinishTime) {
+			viewFunc = &hhPlayerView::MotionBlurVision;
+		} else if ( !g_skipViewEffects.GetBool() && ((hhPlayer *)player)->IsSpiritWalking() ) {
+			viewFunc = &hhPlayerView::SpiritVision;
+		}
+
+		//left view
+		view.vieworg += view.viewaxis[1] * stereo_separation.GetFloat();
+		(this->*viewFunc)( hud, &view );
+		//right view
+		view.x += view.width;
+		view.vieworg -= view.viewaxis[1] * stereo_separation.GetFloat() * 2.f;
+		(this->*viewFunc)( hud, &view );
+
+		if( !g_skipViewEffects.GetBool() )
+		{
+			ScreenFade();
+
+			//reset (for letterbox)
+			view.vieworg += view.viewaxis[1] * stereo_separation.GetFloat();
+			view.x -= view.width;
+			view.width *= 2;
+			view.fov_x *= 2;
+
+			// HUMANHEAD pdm: letterbox
+			ApplyLetterBox(&view);
+		}
 	}
 
 	// HUMANHEAD: Draw the HUD after all over overlay effects.

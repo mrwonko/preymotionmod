@@ -40,7 +40,7 @@ extern hhProfiler *					profiler;
 // HUMANHEAD END
 
 // the "gameversion" client command will print this plus compile date
-#define	GAME_VERSION		"basePrey-1"
+#define	GAME_VERSION		"basePrey-1-motionmod"
 
 // classes used by idGameLocal
 class idEntity;
