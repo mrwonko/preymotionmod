@@ -41,6 +41,7 @@ hhPlayerView::hhPlayerView() {
 	dirDmgLeftMaterial = declManager->FindMaterial( "textures/interface/directionalDamageLeft" );
 	dirDmgFrontMaterial = declManager->FindMaterial( "textures/interface/directionalDamageFront" );
 	spiritMaterial = NULL;
+	riftWarpMaterial = NULL; //Mr. Wonko
 	viewOverlayMaterial = NULL;
 	viewOverlayColor = colorWhite;
 	voTotalTime = -1;
@@ -785,5 +786,15 @@ void hhPlayerView::RenderPlayerView( idUserInterface *hud ) {
 	if ( net_clientLagOMeter.GetBool() && lagoMaterial && gameLocal.isClient ) {
 		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
 		renderSystem->DrawStretchPic( 10.0f, 380.0f, 64.0f, 64.0f, 0.0f, 0.0f, 1.0f, 1.0f, lagoMaterial );
-	}	
+	}
+
+	if( stereo_enable.GetBool() ) // Mr. Wonko: Stereo Rendering - Rift view Warp
+	{
+		if( !riftWarpMaterial )
+		{
+			riftWarpMaterial = declManager->FindMaterial( "motionmod/riftwarp", false );
+		}
+		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
+		renderSystem->DrawStretchPic( 0.0f, 0.0f, 640.0f, 480.0f, 0.0f, 0.0f, 1.0f, 1.0f, riftWarpMaterial );
+	}
 }

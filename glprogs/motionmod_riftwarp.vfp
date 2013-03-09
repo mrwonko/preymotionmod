@@ -1,0 +1,44 @@
+# Vertex Shader
+
+!!ARBvp1.0 OPTION ARB_position_invariant ;
+
+# texture 0 takes the texture coordinates unmodified
+MOV		result.texcoord[0], vertex.texcoord[0];
+MOV		result.color, vertex.color;
+
+END
+
+#======================================================================
+
+# Fragment Shader
+
+!!ARBfp1.0 
+OPTION ARB_precision_hint_fastest;
+
+# texture 0 is _currentRender
+# env[1] is the fragment.position to 0.0 - 1.0 conversion
+
+# temp1 and temp2 are four component vector variables.
+# you declare them with the TEMP command.
+TEMP temp1, temp2, center;
+
+# convert pixel's screen position to a fraction of the screen width & height
+# fraction will be between 0.0 and 1.0.
+# result is stored in temp1.
+# actual rendered image just uses a part of the power of 2 texture used for _currentRender
+MUL  temp1, fragment.position, program.env[1];
+
+
+# pull the color value from _currentRender at texture coordinate temp1.
+# store the r,g,b,a values in temp2.
+TEX  temp2, temp1, texture[0], 2D;
+
+# for testing, so this actually does something: make it red.
+MOV temp2.x, 1.0;
+
+MUL  center, 0.5, program.env[1];
+
+# move temp2 colors into result.color
+MOV  result.color.xyz, temp2;
+
+END

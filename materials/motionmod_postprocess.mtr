@@ -1,0 +1,12 @@
+// Post processing materials (screen overlays)
+
+// view warp for Oculus Rift
+motionmod/riftwarp
+{
+	noshadows
+	{
+		if fragmentPrograms == 1
+		program			motionmod_riftwarp.vfp
+		fragmentmap		0       _currentrender
+	}
+}
