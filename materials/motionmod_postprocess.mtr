@@ -1,7 +1,17 @@
 // Post processing materials (screen overlays)
 
 // view warp for Oculus Rift
-motionmod/riftwarp
+motionmod/riftwarpleft
+{
+	noshadows
+	{
+		if fragmentPrograms == 1
+		program			motionmod_riftwarp.vfp
+		fragmentmap		0       _currentrender
+		//TODO: add fragment parameter for center/side (left/right) - should probably just go with center.
+	}
+}
+motionmod/riftwarpright
 {
 	noshadows
 	{

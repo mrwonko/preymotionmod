@@ -53,7 +53,8 @@ protected:
 	const idMaterial	*dirDmgLeftMaterial;	// HUMANHEAD pdm
 	const idMaterial	*dirDmgFrontMaterial;	// HUMANHEAD pdm
 	const idMaterial	*spiritMaterial;		// HUMANHEAD cjr
-	const idMaterial    *riftWarpMaterial;      // Mr. Wonko
+	const idMaterial    *riftWarpMaterialLeft;  // Mr. Wonko
+	const idMaterial    *riftWarpMaterialRight; // Mr. Wonko
 	idVec3				lastDamageLocation;		// HUMANHEAD PDM: saved damage location
 	float				hurtValue;				// HUMANHEAD bjk: to smooth the health
 };
