@@ -797,7 +797,7 @@ void hhPlayerView::RenderPlayerView( idUserInterface *hud ) {
 		}
 		if( !riftWarpMaterialRight )
 		{
-			riftWarpMaterialLeft = declManager->FindMaterial( "motionmod/riftwarpright", false );
+			riftWarpMaterialRight = declManager->FindMaterial( "motionmod/riftwarpright", false );
 		}
 		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
 		renderSystem->DrawStretchPic( 0.0f, 0.0f, 320.0f, 480.0f, 0.0f, 0.0f, 1.0f, 1.0f, riftWarpMaterialLeft );
