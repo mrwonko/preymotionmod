@@ -1,2 +1,2 @@
 cd ..
-start prey +set fs_game MotionMod
+start prey +set fs_game motionmod

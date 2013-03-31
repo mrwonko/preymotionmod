@@ -800,7 +800,9 @@ void hhPlayerView::RenderPlayerView( idUserInterface *hud ) {
 			riftWarpMaterialRight = declManager->FindMaterial( "motionmod/riftwarpright", false );
 		}
 		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );
+		/* Mr. Wonko: TODO: uncomment, actually write these shaders
 		renderSystem->DrawStretchPic( 0.0f, 0.0f, 320.0f, 480.0f, 0.0f, 0.0f, 1.0f, 1.0f, riftWarpMaterialLeft );
 		renderSystem->DrawStretchPic( 320.0f, 0.0f, 320.0f, 480.0f, 0.0f, 0.0f, 1.0f, 1.0f, riftWarpMaterialRight );
+		*/
 	}
 }
